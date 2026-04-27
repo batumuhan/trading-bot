@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Telegram test
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          pip install python-telegram-bot -q
+          python3 -c "
+          import asyncio, os
+          from telegram import Bot
+          async def gonder():
+              bot = Bot(token=os.environ['TELEGRAM_TOKEN'])
+              await bot.send_message(chat_id=os.environ['TELEGRAM_CHAT_ID'], text='Test basarili!')
+          asyncio.run(gonder())
+          print('Gonderildi!')
+          "
