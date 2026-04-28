@@ -3,15 +3,15 @@
     "ticker": "A1CAP",
     "isim": "A1 Capital Yatirim Menkul Degerler A.S.",
     "sektor": "Financial Services",
-    "fiyat": 13.98,
-    "hedef": 29.9,
-    "potansiyel": 1.138769670958512,
-    "fk": 2.4656084,
-    "pddd": 1.0276389,
+    "fiyat": 14.0,
+    "hedef": 29.91,
+    "potansiyel": 1.1364285714285713,
+    "fk": 2.4691358,
+    "pddd": 1.0291091,
     "roe": 0.52735,
     "kar_buyume": 6.899257361165125,
     "bo": 0.2305,
-    "mcap": 9436499968.0,
+    "mcap": 9450000384.0,
     "puan": 100,
     "detay": [
       "✅ F/K: 2.47",
@@ -19,33 +19,33 @@
       "✅ ROE: %52.7",
       "✅ Kar büyümesi: %689.9",
       "✅ Borç/ÖK: 0.23",
-      "✅ Getiri pot.: %113.9"
+      "✅ Getiri pot.: %113.6"
     ],
-    "tarama_tarihi": "28.04.2026 08:17"
+    "tarama_tarihi": "28.04.2026 08:51"
   },
   {
     "ticker": "AKGRT",
     "isim": "Aksigorta A.S.",
     "sektor": "Financial Services",
-    "fiyat": 7.12,
-    "hedef": 10.18,
-    "potansiyel": 0.42977528089887634,
-    "fk": 4.623377,
-    "pddd": 1.5011595,
+    "fiyat": 7.1,
+    "hedef": 10.17,
+    "potansiyel": 0.43239436619718313,
+    "fk": 4.6103897,
+    "pddd": 1.4969429,
     "roe": 0.39029,
     "kar_buyume": 0.3389107687178598,
     "bo": 0.02738,
-    "mcap": 11477439488.0,
+    "mcap": 11445199872.0,
     "puan": 100,
     "detay": [
-      "✅ F/K: 4.62",
+      "✅ F/K: 4.61",
       "✅ PD/DD: 1.50",
       "✅ ROE: %39.0",
       "✅ Kar büyümesi: %33.9",
       "✅ Borç/ÖK: 0.03",
-      "✅ Getiri pot.: %43.0"
+      "✅ Getiri pot.: %43.2"
     ],
-    "tarama_tarihi": "28.04.2026 08:17"
+    "tarama_tarihi": "28.04.2026 08:51"
   },
   {
     "ticker": "ANSGR",
@@ -69,7 +69,7 @@
       "✅ Borç/ÖK: 0.00",
       "✅ Getiri pot.: %41.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:17"
+    "tarama_tarihi": "28.04.2026 08:51"
   },
   {
     "ticker": "ATEKS",
@@ -93,31 +93,31 @@
       "✅ Borç/ÖK: 0.05",
       "✅ Getiri pot.: %279.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:18"
+    "tarama_tarihi": "28.04.2026 08:52"
   },
   {
     "ticker": "AVHOL",
     "isim": "Avrupa Yatirim Holding A.S.",
     "sektor": "Financial Services",
-    "fiyat": 39.36,
-    "hedef": 94.58,
-    "potansiyel": 1.4029471544715446,
-    "fk": 1.950446,
-    "pddd": 1.3340564,
+    "fiyat": 39.2,
+    "hedef": 94.5,
+    "potansiyel": 1.4107142857142856,
+    "fk": 1.9425174,
+    "pddd": 1.3286334,
     "roe": 0.26059,
     "kar_buyume": 0.27372047327548604,
     "bo": 0.13684,
-    "mcap": 1466160000.0,
+    "mcap": 1460200064.0,
     "puan": 100,
     "detay": [
-      "✅ F/K: 1.95",
+      "✅ F/K: 1.94",
       "✅ PD/DD: 1.33",
       "✅ ROE: %26.1",
       "✅ Kar büyümesi: %27.4",
       "✅ Borç/ÖK: 0.14",
-      "✅ Getiri pot.: %140.3"
+      "✅ Getiri pot.: %141.1"
     ],
-    "tarama_tarihi": "28.04.2026 08:18"
+    "tarama_tarihi": "28.04.2026 08:52"
   },
   {
     "ticker": "AYES",
@@ -141,69 +141,69 @@
       "✅ Borç/ÖK: 0.53",
       "✅ Getiri pot.: %43.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:18"
+    "tarama_tarihi": "28.04.2026 08:52"
   },
   {
     "ticker": "CATES",
     "isim": "CATES",
     "sektor": "Utilities",
-    "fiyat": 47.5,
-    "hedef": 85.46,
-    "potansiyel": 0.799157894736842,
-    "fk": 4.385965,
-    "pddd": 0.61440957,
+    "fiyat": 46.3,
+    "hedef": 84.86,
+    "potansiyel": 0.8328293736501081,
+    "fk": 4.2751617,
+    "pddd": 0.5988876,
     "roe": 0.1506,
     "kar_buyume": 1.398295564920494,
     "bo": 0.0075,
-    "mcap": 7847000064.0,
+    "mcap": 7648759808.0,
     "puan": 100,
     "detay": [
-      "✅ F/K: 4.39",
-      "✅ PD/DD: 0.61",
+      "✅ F/K: 4.28",
+      "✅ PD/DD: 0.60",
       "✅ ROE: %15.1",
       "✅ Kar büyümesi: %139.8",
       "✅ Borç/ÖK: 0.01",
-      "✅ Getiri pot.: %79.9"
+      "✅ Getiri pot.: %83.3"
     ],
-    "tarama_tarihi": "28.04.2026 08:19"
+    "tarama_tarihi": "28.04.2026 08:53"
   },
   {
     "ticker": "GLRYH",
     "isim": "Güler Yatirim Holding A.S.",
     "sektor": "Financial Services",
-    "fiyat": 4.42,
-    "hedef": 11.65,
-    "potansiyel": 1.6357466063348418,
-    "fk": 2.2211056,
-    "pddd": 0.5035316,
+    "fiyat": 4.38,
+    "hedef": 11.63,
+    "potansiyel": 1.6552511415525117,
+    "fk": 2.201005,
+    "pddd": 0.49897474,
     "roe": 0.2603,
     "kar_buyume": 2.9583445870444143,
     "bo": 0.1729,
-    "mcap": 2652000000.0,
+    "mcap": 2628000000.0,
     "puan": 100,
     "detay": [
-      "✅ F/K: 2.22",
+      "✅ F/K: 2.20",
       "✅ PD/DD: 0.50",
       "✅ ROE: %26.0",
       "✅ Kar büyümesi: %295.8",
       "✅ Borç/ÖK: 0.17",
-      "✅ Getiri pot.: %163.6"
+      "✅ Getiri pot.: %165.5"
     ],
-    "tarama_tarihi": "28.04.2026 08:20"
+    "tarama_tarihi": "28.04.2026 08:55"
   },
   {
     "ticker": "HLGYO",
     "isim": "Halk Gayrimenkul Yatirim Ortakligi A.S",
     "sektor": "Real Estate",
-    "fiyat": 5.75,
-    "hedef": 19.01,
-    "potansiyel": 2.3060869565217392,
-    "fk": 1.6618497,
-    "pddd": 0.3974563,
+    "fiyat": 5.73,
+    "hedef": 19.0,
+    "potansiyel": 2.3158813263525304,
+    "fk": 1.6560694,
+    "pddd": 0.39607382,
     "roe": 0.2786,
     "kar_buyume": 7.302874478735966,
     "bo": 0.19602,
-    "mcap": 21578022912.0,
+    "mcap": 21502969856.0,
     "puan": 100,
     "detay": [
       "✅ F/K: 1.66",
@@ -211,9 +211,9 @@
       "✅ ROE: %27.9",
       "✅ Kar büyümesi: %730.3",
       "✅ Borç/ÖK: 0.20",
-      "✅ Getiri pot.: %230.6"
+      "✅ Getiri pot.: %231.6"
     ],
-    "tarama_tarihi": "28.04.2026 08:21"
+    "tarama_tarihi": "28.04.2026 08:55"
   },
   {
     "ticker": "IHLGM",
@@ -237,6 +237,6 @@
       "✅ Borç/ÖK: 0.03",
       "✅ Getiri pot.: %65.2"
     ],
-    "tarama_tarihi": "28.04.2026 08:21"
+    "tarama_tarihi": "28.04.2026 08:55"
   }
 ]
