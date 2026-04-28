@@ -61,7 +61,11 @@ def calistir(komut, modul_adi):
         elif modul_adi == "bist_temel":
             import bist_temel
             if komut == "TAKIP":   bist_temel.gunluk_takip()
-            elif komut == "TARA":  bist_temel.tam_tarama()
+            elif komut == "TARA":
+                secilen = bist_temel.tam_tarama()
+                mesaj   = bist_temel._tarama_mesaji(secilen)
+                from telegram_bot import gonder
+                gonder(mesaj)
 
         log.info(f"✅ {modul_adi} {komut} tamamlandı")
     except Exception as e:
