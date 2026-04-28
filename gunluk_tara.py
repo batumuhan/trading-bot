@@ -67,14 +67,14 @@ def calistir(komut, modul_adi):
         log.error(f"❌ {modul_adi} {komut} hatası: {e}")
 
 def sabah():
-    """09:10 — Tüm taramalar"""
+    """10:30 — Sabah taraması (BIST + Kripto + Metal + Temel fiyat takip)"""
     log.info("=" * 50)
     log.info("SABAH TARAMASI BAŞLIYOR")
     log.info("=" * 50)
     calistir("TARA",   "bist_trade")
     calistir("TARA",   "kripto")
     calistir("TARA",   "altin_gumus")
-    calistir("TAKIP",  "bist_temel")
+    calistir("TAKIP",  "bist_temel")   # Sadece fiyat + KAP takip, TARA değil
     _sim_ozet_gonder("SABAH")
     log.info("Sabah taraması tamamlandı")
 
@@ -191,6 +191,9 @@ if __name__ == "__main__":
         elif komut == "AKSAM1": aksam1()
         elif komut == "AKSAM2": aksam2()
         elif komut == "KRIPTO": kripto_tara()
+        elif komut == "TEMEL_TARA":
+            # 6 ayda bir manuel çalıştır
+            calistir("TARA", "bist_temel")
         elif komut == "HEPSI":
             sabah(); ogle(); aksam1(); aksam2()
     else:
