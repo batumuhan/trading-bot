@@ -251,20 +251,63 @@ def poz_kart(p, renk="#8ab0d4", bg="#eef4fa"):
     with col2:
         st.metric("", tl(kz), pct(kzp))
 
-    # Progress bar
-    if giris > 0:
-        sol = stop if stop else giris*0.88
-        sag = tp3  if tp3  else giris*1.15
-        if sag != sol:
-            pos = max(0.0, min(1.0, (gunc-sol)/(sag-sol)))
-            st.progress(pos)
-
-        # TP seviyeleri
-        tp_cols = st.columns(4)
-        tp_cols[0].caption(f"🔴 {stop:.2f}" if stop else "—")
-        tp_cols[1].caption(f"{'✅' if tp1ok else '○'} TP1: {tp1:.2f}" if tp1 else "—")
-        tp_cols[2].caption(f"{'✅' if tp2ok else '○'} TP2: {tp2:.2f}" if tp2 else "—")
-        tp_cols[3].caption(f"○ TP3: {tp3:.2f}" if tp3 else "—")
+    # Seviyeler — sayısal
+    seviye_cols = st.columns(4)
+    with seviye_cols[0]:
+        if stop:
+            stop_pct = (stop - giris) / giris * 100
+            st.markdown(
+                f"<div style='background:#fdf2f2;border:1px solid #f5c6c6;border-radius:8px;"
+                f"padding:8px 10px;text-align:center'>"
+                f"<div style='font-size:9px;color:#d4706a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px'>Stop</div>"
+                f"<div style='font-family:JetBrains Mono;font-size:13px;color:#d4706a;margin-top:2px'>{stop:.4f}</div>"
+                f"<div style='font-size:9px;color:#d4706a;opacity:0.7'>{stop_pct:+.1f}%</div>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+    with seviye_cols[1]:
+        if tp1:
+            tp1_pct = (tp1 - giris) / giris * 100
+            tp1_c = "#6aaa7a" if tp1ok else "#a09590"
+            tp1_bg = "#f2fdf4" if tp1ok else "#f8f6f4"
+            tp1_border = "#c6e8cc" if tp1ok else "#e0d8cc"
+            st.markdown(
+                f"<div style='background:{tp1_bg};border:1px solid {tp1_border};border-radius:8px;"
+                f"padding:8px 10px;text-align:center'>"
+                f"<div style='font-size:9px;color:{tp1_c};font-weight:600;text-transform:uppercase;letter-spacing:0.5px'>{'✓ ' if tp1ok else ''}TP1</div>"
+                f"<div style='font-family:JetBrains Mono;font-size:13px;color:{tp1_c};margin-top:2px'>{tp1:.4f}</div>"
+                f"<div style='font-size:9px;color:{tp1_c};opacity:0.7'>{tp1_pct:+.1f}%</div>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+    with seviye_cols[2]:
+        if tp2:
+            tp2_pct = (tp2 - giris) / giris * 100
+            tp2_c = "#6aaa7a" if tp2ok else "#a09590"
+            tp2_bg = "#f2fdf4" if tp2ok else "#f8f6f4"
+            tp2_border = "#c6e8cc" if tp2ok else "#e0d8cc"
+            st.markdown(
+                f"<div style='background:{tp2_bg};border:1px solid {tp2_border};border-radius:8px;"
+                f"padding:8px 10px;text-align:center'>"
+                f"<div style='font-size:9px;color:{tp2_c};font-weight:600;text-transform:uppercase;letter-spacing:0.5px'>{'✓ ' if tp2ok else ''}TP2</div>"
+                f"<div style='font-family:JetBrains Mono;font-size:13px;color:{tp2_c};margin-top:2px'>{tp2:.4f}</div>"
+                f"<div style='font-size:9px;color:{tp2_c};opacity:0.7'>{tp2_pct:+.1f}%</div>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+    with seviye_cols[3]:
+        if tp3:
+            tp3_pct = (tp3 - giris) / giris * 100
+            st.markdown(
+                f"<div style='background:#f8f6f4;border:1px solid #e0d8cc;border-radius:8px;"
+                f"padding:8px 10px;text-align:center'>"
+                f"<div style='font-size:9px;color:#a09590;font-weight:600;text-transform:uppercase;letter-spacing:0.5px'>TP3</div>"
+                f"<div style='font-family:JetBrains Mono;font-size:13px;color:#a09590;margin-top:2px'>{tp3:.4f}</div>"
+                f"<div style='font-size:9px;color:#a09590;opacity:0.7'>{tp3_pct:+.1f}%</div>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+    st.markdown("<div style='margin-bottom:4px'></div>", unsafe_allow_html=True)
 
     if p.get("notlar"): st.caption(f"📝 {p['notlar']}")
     st.divider()
@@ -465,6 +508,119 @@ def performans(veri):
             ))
             st.plotly_chart(plt_cfg(fig3,240),use_container_width=True)
 
+    # ── BENCHMARK KARŞILAŞTIRMASI ─────────────────────
+    st.markdown("---")
+    st.markdown("##### 📊 BIST 100 vs Portföy")
+
+    try:
+        import yfinance as yf
+        from datetime import timedelta
+
+        # BIST 100 verisi
+        xu100 = yf.download("XU100.IS", period="6mo", progress=False, auto_adjust=True)
+
+        if not xu100.empty:
+            b1, b2 = st.columns(2)
+
+            with b1:
+                st.markdown("**Günlük Karşılaştırma**")
+                # BIST 100 günlük değişim
+                if len(xu100) >= 2:
+                    dun = float(xu100["Close"].iloc[-2])
+                    bugun = float(xu100["Close"].iloc[-1])
+                    bist_gunluk = (bugun - dun) / dun * 100
+
+                    # Portföy günlük değişim — açık pozisyonların bugünkü K/Z
+                    portfolyo_gunluk_tl = sum(p.get("kz_tl", 0) for p in tum_a)
+                    portfolyo_yat = len(tum_a) * POS_TL if tum_a else POS_TL
+                    portfolyo_gunluk = portfolyo_gunluk_tl / portfolyo_yat * 100 if portfolyo_yat else 0
+
+                    c1, c2 = st.columns(2)
+                    renk_bist = "#6aaa7a" if bist_gunluk >= 0 else "#d4706a"
+                    renk_port = "#6aaa7a" if portfolyo_gunluk >= 0 else "#d4706a"
+
+                    c1.metric("BIST 100 Bugün",
+                              f"%{bist_gunluk:+.2f}",
+                              f"{bugun:,.0f} puan")
+                    c2.metric("Portföy Bugün",
+                              f"%{portfolyo_gunluk:+.2f}",
+                              f"{tl(portfolyo_gunluk_tl)}")
+
+                    # Fark
+                    fark = portfolyo_gunluk - bist_gunluk
+                    fark_r = "#6aaa7a" if fark >= 0 else "#d4706a"
+                    st.markdown(
+                        f"<div style='background:white;border:1px solid #e0d8cc;border-radius:10px;"
+                        f"padding:10px 14px;margin-top:8px;text-align:center'>"
+                        f"<div style='font-size:10px;color:#a09590;margin-bottom:4px'>Alpha (Portföy - BIST 100)</div>"
+                        f"<div style='font-family:JetBrains Mono;font-size:18px;color:{fark_r};font-weight:500'>"
+                        f"%{fark:+.2f}</div></div>",
+                        unsafe_allow_html=True
+                    )
+
+            with b2:
+                st.markdown("**Kümülatif Karşılaştırma**")
+
+                if tum_k:
+                    # Portföy kümülatif getiri
+                    siralı_port = sorted(tum_k, key=lambda x: x.get("cikis_tarih","") or "")
+
+                    # İlk işlem tarihinden itibaren BIST 100
+                    try:
+                        ilk_tarih = siralı_port[0].get("cikis_tarih","")
+                        if ilk_tarih:
+                            ilk_dt = datetime.strptime(ilk_tarih, "%d.%m.%Y %H:%M")
+                            xu100_filtered = xu100[xu100.index >= ilk_dt.strftime("%Y-%m-%d")]
+
+                            if not xu100_filtered.empty:
+                                bist_baslangic = float(xu100_filtered["Close"].iloc[0])
+                                bist_tarihler  = [str(d.date()) for d in xu100_filtered.index]
+                                bist_getiri    = [(float(v) - bist_baslangic) / bist_baslangic * 100
+                                                  for v in xu100_filtered["Close"]]
+
+                                # Portföy kümülatif
+                                port_tarihler, port_getiri = [], []
+                                kum_tl = 0
+                                baslangic_yat = len(tum_k) * POS_TL
+                                for p in siralı_port:
+                                    kum_tl += p.get("kz_tl", 0)
+                                    port_tarihler.append(p.get("cikis_tarih","")[:10])
+                                    port_getiri.append(kum_tl / baslangic_yat * 100 if baslangic_yat else 0)
+
+                                fig_bench = go.Figure()
+                                fig_bench.add_trace(go.Scatter(
+                                    x=bist_tarihler, y=bist_getiri,
+                                    name="BIST 100", mode="lines",
+                                    line=dict(color="#8ab0d4", width=1.5, dash="dot"),
+                                ))
+                                fig_bench.add_trace(go.Scatter(
+                                    x=port_tarihler, y=port_getiri,
+                                    name="Portföy", mode="lines+markers",
+                                    line=dict(color="#6aaa7a", width=2),
+                                    marker=dict(size=4, color="#6aaa7a"),
+                                    fill="tozeroy",
+                                    fillcolor="rgba(106,170,122,0.06)",
+                                ))
+                                fig_bench.add_hline(y=0, line_dash="dot", line_color="#e0d8cc")
+                                fig_bench.update_layout(
+                                    paper_bgcolor="white", plot_bgcolor="white",
+                                    font=dict(color="#a09590", family="Plus Jakarta Sans", size=10),
+                                    yaxis=dict(showgrid=True, gridcolor="#f4efe6",
+                                               zeroline=False, ticksuffix="%", tickfont=dict(size=9)),
+                                    xaxis=dict(showgrid=False, tickfont=dict(size=9)),
+                                    margin=dict(t=8,b=8,l=8,r=8), height=220,
+                                    showlegend=True,
+                                    legend=dict(orientation="h", y=-0.3, font=dict(size=10)),
+                                )
+                                st.plotly_chart(fig_bench, use_container_width=True)
+                    except Exception as e:
+                        st.caption(f"Grafik yüklenemedi: {e}")
+                else:
+                    st.info("Karşılaştırma için kapanan işlem gerekli")
+    except Exception as e:
+        st.caption(f"BIST 100 verisi alınamadı: {e}")
+
+    st.markdown("---")
     st.markdown("##### Puan Bazlı Performans")
     gruplar={"65-69":[],"70-79":[],"80-89":[],"90-99":[],"100":[]}
     for p in tum_a+tum_k:
