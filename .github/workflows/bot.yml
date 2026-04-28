@@ -23,6 +23,7 @@ on:
           - AKSAM1
           - AKSAM2
           - KRIPTO
+          - TEMEL_TARA
 
 jobs:
   calistir:
