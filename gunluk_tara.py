@@ -1,10 +1,12 @@
 """
 gunluk_tara.py — Tüm taramaları sırayla çalıştırır.
-Görev Zamanlayıcı bu dosyayı günde 3 kez çalıştırır.
+GitHub Actions bu dosyayı otomatik çalıştırır.
 
-Sabah (09:10): BIST teknik + kripto + metal + temel takip
-Öğle (13:00):  Kripto + güncelleme
-Akşam (18:30): Tüm raporlar + güncelleme
+SABAH  (10:30): BIST teknik + kripto + metal + temel takip
+OGLE   (12:30): BIST teknik + kripto + metal + temel takip
+AKSAM1 (15:30): BIST rapor + kripto tarama
+AKSAM2 (16:30): Kapanış öncesi tüm raporlar
+KRIPTO (her 2 saatte bir 7/24): Sadece kripto tarama
 """
 
 import sys
@@ -73,16 +75,20 @@ def sabah():
     calistir("TARA",   "kripto")
     calistir("TARA",   "altin_gumus")
     calistir("TAKIP",  "bist_temel")
+    _sim_ozet_gonder("SABAH")
     log.info("Sabah taraması tamamlandı")
 
 def ogle():
-    """13:00 — Kripto + güncelleme"""
+    """12:30 — Tam tarama + simülasyon güncelleme"""
     log.info("=" * 50)
-    log.info("ÖĞLE GÜNCELLEMESİ BAŞLIYOR")
+    log.info("ÖĞLE TARAMASI BAŞLIYOR")
     log.info("=" * 50)
-    calistir("RAPOR", "kripto")
-    calistir("RAPOR", "bist_trade")
-    log.info("Öğle güncellemesi tamamlandı")
+    calistir("TARA",  "bist_trade")
+    calistir("TARA",  "kripto")
+    calistir("TARA",  "altin_gumus")
+    calistir("TAKIP", "bist_temel")
+    _sim_ozet_gonder("ÖĞLE")
+    log.info("Öğle taraması tamamlandı")
 
 def aksam():
     """18:30 — Tüm raporlar"""
@@ -95,6 +101,55 @@ def aksam():
     calistir("TAKIP", "bist_temel")
     log.info("Akşam raporu tamamlandı")
 
+def _sim_ozet_gonder(etiket: str):
+    """Her taramanın sonunda tüm açık pozisyonların anlık durumunu gönder."""
+    try:
+        from simulasyon import yukle, istatistik
+        from telegram_bot import gonder
+
+        sim = yukle()
+        zaman = datetime.now().strftime('%d.%m.%Y %H:%M')
+        satirlar = [
+            f"📊 <b>{etiket} — PORTFÖY DURUMU</b>",
+            f"🕐 {zaman}\n"
+        ]
+
+        kat_bilgi = {
+            "bist_trade": "📈 BIST Teknik",
+            "bist_temel": "📊 BIST Temel",
+            "kripto":     "🪙 Kripto",
+            "metal":      "🥇 Emtia",
+        }
+
+        toplam_kz = 0
+        for kat, isim in kat_bilgi.items():
+            acik = sim.get(kat, {}).get("acik", [])
+            if not acik:
+                continue
+            satirlar.append(f"<b>{isim}</b>")
+            for p in acik:
+                kz_tl  = p.get("kz_tl", 0)
+                kz_pct = p.get("kz_pct", 0)
+                em     = "🟢" if kz_tl >= 0 else "🔴"
+                yon    = "⬆️" if p.get("yon","LONG")=="LONG" else "⬇️"
+                tp1ok  = "✅" if p.get("tp1_gecildi") else "⬜"
+                tp2ok  = "✅" if p.get("tp2_gecildi") else "⬜"
+                satirlar.append(
+                    f"  {em}{yon} <b>{p['ticker']}</b> | {kz_pct*100:+.2f}% ({kz_tl:+,.0f} TL)"
+                    + "\n"
+                    + f"     TP1{tp1ok} TP2{tp2ok} | Stop: {p.get('stop', '—')}"
+                )
+                toplam_kz += kz_tl
+
+        em_top = "🟢" if toplam_kz >= 0 else "🔴"
+        em_top = "🟢" if toplam_kz >= 0 else "🔴"
+        satirlar.append(f"{em_top} <b>Toplam Acik K/Z: {toplam_kz:+,.0f} TL</b>")
+        gonder("\n".join(satirlar))
+        log.info(f"Portfoy ozeti gonderildi: {toplam_kz:+,.0f} TL")
+    except Exception as e:
+        log.error(f"Portföy özeti hatası: {e}")
+
+
 def kripto_tara():
     """Kripto tarama — her 2 saatte bir"""
     log.info("=" * 50)
@@ -102,6 +157,27 @@ def kripto_tara():
     log.info("=" * 50)
     calistir("TARA", "kripto")
     log.info("Kripto taraması tamamlandı")
+
+def aksam1():
+    """15:30 — BIST güncelleme + kripto"""
+    log.info("=" * 50)
+    log.info("15:30 GÜNCELLEMESİ BAŞLIYOR")
+    log.info("=" * 50)
+    calistir("RAPOR", "bist_trade")
+    calistir("TARA",  "kripto")
+    _sim_ozet_gonder("15:30")
+    log.info("15:30 güncellemesi tamamlandı")
+
+def aksam2():
+    """16:30 — Kapanış öncesi son güncelleme"""
+    log.info("=" * 50)
+    log.info("16:30 GÜNCELLEMESİ BAŞLIYOR")
+    log.info("=" * 50)
+    calistir("RAPOR", "bist_trade")
+    calistir("RAPOR", "kripto")
+    calistir("TARA",  "altin_gumus")
+    _sim_ozet_gonder("16:30 KAPANIŞ")
+    log.info("16:30 güncellemesi tamamlandı")
 
 
 if __name__ == "__main__":
@@ -112,9 +188,11 @@ if __name__ == "__main__":
         if komut == "SABAH":    sabah()
         elif komut == "OGLE":   ogle()
         elif komut == "AKSAM":  aksam()
+        elif komut == "AKSAM1": aksam1()
+        elif komut == "AKSAM2": aksam2()
         elif komut == "KRIPTO": kripto_tara()
         elif komut == "HEPSI":
-            sabah(); ogle(); aksam()
+            sabah(); ogle(); aksam1(); aksam2()
     else:
         # Saate göre otomatik karar ver
         if saat < 11:
