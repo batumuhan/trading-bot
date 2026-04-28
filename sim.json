@@ -1,6 +1,18 @@
 {
-  "bist_trade": {"acik": [], "kapali": []},
-  "bist_temel": {"acik": [], "kapali": []},
-  "kripto":     {"acik": [], "kapali": []},
-  "metal":      {"acik": [], "kapali": []}
+  "bist_trade": {
+    "acik": [],
+    "kapali": []
+  },
+  "bist_temel": {
+    "acik": [],
+    "kapali": []
+  },
+  "kripto": {
+    "acik": [],
+    "kapali": []
+  },
+  "metal": {
+    "acik": [],
+    "kapali": []
+  }
 }
