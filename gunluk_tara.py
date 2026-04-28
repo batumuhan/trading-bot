@@ -65,7 +65,27 @@ def calistir(komut, modul_adi):
                 secilen = bist_temel.tam_tarama()
                 mesaj   = bist_temel._tarama_mesaji(secilen)
                 from telegram_bot import gonder
+                from simulasyon import pozisyon_ac, rapor_mesaji
                 gonder(mesaj)
+                # Simülasyona pozisyon aç
+                for s in secilen:
+                    if s.get("fiyat"):
+                        tp1 = s["fiyat"] * 1.15
+                        tp2 = s["fiyat"] * 1.25
+                        tp3 = s.get("hedef") or s["fiyat"] * 1.40
+                        pozisyon_ac(
+                            kategori = "bist_temel",
+                            ticker   = s["ticker"],
+                            fiyat    = s["fiyat"],
+                            yon      = "LONG",
+                            stop     = None,
+                            tp1      = round(tp1, 2),
+                            tp2      = round(tp2, 2),
+                            tp3      = round(tp3, 2),
+                            puan     = s["puan"],
+                            notlar   = f"Hedef:{s.get('hedef',0):.2f} Pot:{s.get('potansiyel',0)*100:.1f}%",
+                        )
+                gonder(rapor_mesaji("bist_temel", "BIST TEMEL", "📊"))
 
         log.info(f"✅ {modul_adi} {komut} tamamlandı")
     except Exception as e:
