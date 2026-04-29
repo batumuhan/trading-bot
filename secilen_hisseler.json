@@ -21,7 +21,9 @@
       "✅ Borç/ÖK: 0.23",
       "✅ Getiri pot.: %113.6"
     ],
-    "tarama_tarihi": "28.04.2026 08:51"
+    "tarama_tarihi": "28.04.2026 08:51",
+    "guncel_fiyat": 14.020000457763672,
+    "guncel_getiri": 0.0014286041259765625
   },
   {
     "ticker": "AKGRT",
@@ -45,7 +47,9 @@
       "✅ Borç/ÖK: 0.03",
       "✅ Getiri pot.: %43.2"
     ],
-    "tarama_tarihi": "28.04.2026 08:51"
+    "tarama_tarihi": "28.04.2026 08:51",
+    "guncel_fiyat": 7.059999942779541,
+    "guncel_getiri": -0.005633810876120934
   },
   {
     "ticker": "ANSGR",
@@ -69,7 +73,9 @@
       "✅ Borç/ÖK: 0.00",
       "✅ Getiri pot.: %41.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:51"
+    "tarama_tarihi": "28.04.2026 08:51",
+    "guncel_fiyat": 28.760000228881836,
+    "guncel_getiri": 0.010541118372517044
   },
   {
     "ticker": "ATEKS",
@@ -93,7 +99,9 @@
       "✅ Borç/ÖK: 0.05",
       "✅ Getiri pot.: %279.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:52"
+    "tarama_tarihi": "28.04.2026 08:52",
+    "guncel_fiyat": 95.94999694824219,
+    "guncel_getiri": -0.014381130475170076
   },
   {
     "ticker": "AVHOL",
@@ -117,7 +125,9 @@
       "✅ Borç/ÖK: 0.14",
       "✅ Getiri pot.: %141.1"
     ],
-    "tarama_tarihi": "28.04.2026 08:52"
+    "tarama_tarihi": "28.04.2026 08:52",
+    "guncel_fiyat": 39.13999938964844,
+    "guncel_getiri": -0.0015306278150909525
   },
   {
     "ticker": "AYES",
@@ -141,7 +151,9 @@
       "✅ Borç/ÖK: 0.53",
       "✅ Getiri pot.: %43.9"
     ],
-    "tarama_tarihi": "28.04.2026 08:52"
+    "tarama_tarihi": "28.04.2026 08:52",
+    "guncel_fiyat": 30.0,
+    "guncel_getiri": -0.03163331181407361
   },
   {
     "ticker": "CATES",
@@ -165,7 +177,9 @@
       "✅ Borç/ÖK: 0.01",
       "✅ Getiri pot.: %83.3"
     ],
-    "tarama_tarihi": "28.04.2026 08:53"
+    "tarama_tarihi": "28.04.2026 08:53",
+    "guncel_fiyat": 45.0,
+    "guncel_getiri": -0.028077753779697564
   },
   {
     "ticker": "GLRYH",
@@ -189,7 +203,9 @@
       "✅ Borç/ÖK: 0.17",
       "✅ Getiri pot.: %165.5"
     ],
-    "tarama_tarihi": "28.04.2026 08:55"
+    "tarama_tarihi": "28.04.2026 08:55",
+    "guncel_fiyat": 4.389999866485596,
+    "guncel_getiri": 0.0022830745400903678
   },
   {
     "ticker": "HLGYO",
@@ -213,7 +229,9 @@
       "✅ Borç/ÖK: 0.20",
       "✅ Getiri pot.: %231.6"
     ],
-    "tarama_tarihi": "28.04.2026 08:55"
+    "tarama_tarihi": "28.04.2026 08:55",
+    "guncel_fiyat": 5.789999961853027,
+    "guncel_getiri": 0.01047119753106927
   },
   {
     "ticker": "IHLGM",
@@ -237,6 +255,8 @@
       "✅ Borç/ÖK: 0.03",
       "✅ Getiri pot.: %65.2"
     ],
-    "tarama_tarihi": "28.04.2026 08:55"
+    "tarama_tarihi": "28.04.2026 08:55",
+    "guncel_fiyat": 2.3299999237060547,
+    "guncel_getiri": -3.2744182568049044e-08
   }
 ]
