@@ -92,13 +92,13 @@ def analiz_et(sembol: str) -> dict | None:
 
         trend_4h_yukari  = trend_yukari(ema21_4h, ema55_4h)
         rsi_4h_son       = float(rsi_4h.iloc[-1])
-        macd_4h_long     = macd_pozitif_kesisim(hist_4h)
-        macd_4h_short    = macd_negatif_kesisim(hist_4h)
+        macd_4h_long     = float(hist_4h.iloc[-1]) > 0   # Pozitif bölgede
+        macd_4h_short    = float(hist_4h.iloc[-1]) < 0   # Negatif bölgede
 
         # İndikatörler — 1H
         _, _, hist_1h = macd(d1h["close"])
-        macd_1h_long  = macd_pozitif_kesisim(hist_1h)
-        macd_1h_short = macd_negatif_kesisim(hist_1h)
+        macd_1h_long  = float(hist_1h.iloc[-1]) > 0   # Pozitif bölgede yeterli
+        macd_1h_short = float(hist_1h.iloc[-1]) < 0   # Negatif bölgede yeterli
 
         # Son değerler
         fiyat   = float(d4h["close"].iloc[-1])
