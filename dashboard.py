@@ -132,7 +132,6 @@ POS_TL = 10_000
 
 KATLAR = {
     "bist_trade": {"isim":"BIST Teknik", "emoji":"📈","renk":"#8ab0d4","bg":"#eef4fa"},
-    "bist_temel": {"isim":"BIST Temel",  "emoji":"📊","renk":"#9bbfa8","bg":"#eef5ee"},
     "kripto":     {"isim":"Kripto",       "emoji":"🪙","renk":"#d4b896","bg":"#faf4ec"},
     "metal":      {"isim":"Emtia",        "emoji":"🥇","renk":"#c4a8c4","bg":"#f5eef5"},
 }
@@ -352,7 +351,7 @@ with st.sidebar:
 
     secim = st.radio("",
         ["🏠 Genel Bakış","📈 Performans",
-         "📈 BIST Teknik","📊 BIST Temel","🪙 Kripto","🥇 Emtia"],
+         "📈 BIST Teknik","🪙 Kripto","🥇 Emtia"],
         label_visibility="collapsed"
     )
 
@@ -725,6 +724,5 @@ veri=yukle()
 if   secim=="🏠 Genel Bakış":  genel(veri)
 elif secim=="📈 Performans":    performans(veri)
 elif secim=="📈 BIST Teknik":   detay("bist_trade",veri)
-elif secim=="📊 BIST Temel":    detay("bist_temel",veri)
 elif secim=="🪙 Kripto":        detay("kripto",veri)
 elif secim=="🥇 Emtia":         detay("metal",veri)
