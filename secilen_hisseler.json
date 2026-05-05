@@ -22,8 +22,8 @@
       "✅ Getiri pot.: %113.6"
     ],
     "tarama_tarihi": "28.04.2026 08:51",
-    "guncel_fiyat": 11.789999961853027,
-    "guncel_getiri": -0.15785714558192662
+    "guncel_fiyat": 11.720000267028809,
+    "guncel_getiri": -0.16285712378365652
   },
   {
     "ticker": "AKGRT",
@@ -48,8 +48,8 @@
       "✅ Getiri pot.: %43.2"
     ],
     "tarama_tarihi": "28.04.2026 08:51",
-    "guncel_fiyat": 7.110000133514404,
-    "guncel_getiri": 0.001408469509071078
+    "guncel_fiyat": 7.099999904632568,
+    "guncel_getiri": -1.3432032575401921e-08
   },
   {
     "ticker": "ANSGR",
@@ -74,8 +74,8 @@
       "✅ Getiri pot.: %41.9"
     ],
     "tarama_tarihi": "28.04.2026 08:51",
-    "guncel_fiyat": 29.979999542236328,
-    "guncel_getiri": 0.05340827625566856
+    "guncel_fiyat": 29.920000076293945,
+    "guncel_getiri": 0.05130007295481182
   },
   {
     "ticker": "ATEKS",
@@ -100,8 +100,8 @@
       "✅ Getiri pot.: %279.9"
     ],
     "tarama_tarihi": "28.04.2026 08:52",
-    "guncel_fiyat": 93.94999694824219,
-    "guncel_getiri": -0.03492555779925842
+    "guncel_fiyat": 94.0,
+    "guncel_getiri": -0.03441191576784791
   },
   {
     "ticker": "AVHOL",
@@ -126,8 +126,8 @@
       "✅ Getiri pot.: %141.1"
     ],
     "tarama_tarihi": "28.04.2026 08:52",
-    "guncel_fiyat": 38.560001373291016,
-    "guncel_getiri": -0.016326495579310898
+    "guncel_fiyat": 38.20000076293945,
+    "guncel_getiri": -0.02551018461889157
   },
   {
     "ticker": "AYES",
@@ -152,8 +152,8 @@
       "✅ Getiri pot.: %43.9"
     ],
     "tarama_tarihi": "28.04.2026 08:52",
-    "guncel_fiyat": 30.31999969482422,
-    "guncel_getiri": -0.02130407699082575
+    "guncel_fiyat": 30.200000762939453,
+    "guncel_getiri": -0.025177509265995716
   },
   {
     "ticker": "CATES",
@@ -178,8 +178,8 @@
       "✅ Getiri pot.: %83.3"
     ],
     "tarama_tarihi": "28.04.2026 08:53",
-    "guncel_fiyat": 40.58000183105469,
-    "guncel_getiri": -0.12354207708305205
+    "guncel_fiyat": 39.599998474121094,
+    "guncel_getiri": -0.14470845628248172
   },
   {
     "ticker": "GLRYH",
@@ -204,8 +204,8 @@
       "✅ Getiri pot.: %165.5"
     ],
     "tarama_tarihi": "28.04.2026 08:55",
-    "guncel_fiyat": 4.019999980926514,
-    "guncel_getiri": -0.08219178517659503
+    "guncel_fiyat": 4.050000190734863,
+    "guncel_getiri": -0.0753424222066522
   },
   {
     "ticker": "HLGYO",
@@ -230,8 +230,8 @@
       "✅ Getiri pot.: %231.6"
     ],
     "tarama_tarihi": "28.04.2026 08:55",
-    "guncel_fiyat": 5.730000019073486,
-    "guncel_getiri": 3.32870609106446e-09
+    "guncel_fiyat": 5.789999961853027,
+    "guncel_getiri": 0.01047119753106927
   },
   {
     "ticker": "IHLGM",
@@ -256,7 +256,7 @@
       "✅ Getiri pot.: %65.2"
     ],
     "tarama_tarihi": "28.04.2026 08:55",
-    "guncel_fiyat": 2.2200000286102295,
-    "guncel_getiri": -0.047210288150116124
+    "guncel_fiyat": 2.319999933242798,
+    "guncel_getiri": -0.004291874144721983
   }
 ]
