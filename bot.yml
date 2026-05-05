@@ -1,0 +1,104 @@
+name: Trading Bot
+
+on:
+  schedule:
+    # BIST taramalari (Pazartesi-Cuma, TR = UTC+3)
+    - cron: '30 7 * * 1-5'   # 10:30 TR
+    - cron: '30 9 * * 1-5'   # 12:30 TR
+    - cron: '30 12 * * 1-5'  # 15:30 TR
+    - cron: '30 13 * * 1-5'  # 16:30 TR
+    # Kripto her 2 saatte bir (7/24)
+    - cron: '0 */2 * * *'
+
+  workflow_dispatch:
+    inputs:
+      gorev:
+        description: 'Gorev'
+        required: true
+        default: 'KRIPTO'
+        type: choice
+        options:
+          - SABAH
+          - OGLE
+          - AKSAM1
+          - AKSAM2
+          - KRIPTO
+
+jobs:
+  calistir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Kutuphaneleri kur
+        run: |
+          pip install yfinance pandas numpy python-telegram-bot requests beautifulsoup4
+
+      - name: Token yaz
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 -c "
+          import os
+          with open('config.py', 'r', encoding='utf-8') as f:
+              c = f.read()
+          c = c.replace('8731413161:AAG8TR91BrQ_OTh-tRBcOSx4fkzk0ke6TUk', os.environ['TG_TOKEN'])
+          c = c.replace('\"947636416\"', '\"' + os.environ['TG_CHAT'] + '\"')
+          with open('config.py', 'w', encoding='utf-8') as f:
+              f.write(c)
+          print('Token yazildi')
+          "
+
+      - name: Gorevi belirle
+        id: gorev
+        env:
+          INPUT_GOREV: ${{ github.event.inputs.gorev || '' }}
+        run: |
+          python3 -c "
+          import os
+          from datetime import datetime, timezone, timedelta
+          manuel = os.environ.get('INPUT_GOREV', '')
+          if manuel:
+              gorev = manuel
+          else:
+              now_tr = datetime.now(timezone.utc) + timedelta(hours=3)
+              tr_saat = now_tr.hour
+              tr_dakika = now_tr.minute
+              gun = datetime.now(timezone.utc).weekday()
+              hafta_ici = gun < 5
+
+              if hafta_ici and tr_saat == 10:
+                  gorev = 'SABAH'
+              elif hafta_ici and tr_saat == 12:
+                  gorev = 'OGLE'
+              elif hafta_ici and tr_saat == 15:
+                  gorev = 'AKSAM1'
+              elif hafta_ici and tr_saat == 16:
+                  gorev = 'AKSAM2'
+              else:
+                  gorev = 'KRIPTO'
+
+          print('Gorev: ' + gorev)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('gorev=' + gorev + '\n')
+          "
+
+      - name: Calistir
+        run: python gunluk_tara.py ${{ steps.gorev.outputs.gorev }}
+
+      - name: sim.json kaydet
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@bot.com"
+          git add sim.json secilen_hisseler.json || true
+          git diff --staged --quiet || git commit -m "sim guncellendi"
+          git push || true

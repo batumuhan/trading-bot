@@ -99,7 +99,6 @@ def sabah():
     calistir("TARA",   "bist_trade")
     calistir("TARA",   "kripto")
     calistir("TARA",   "altin_gumus")
-    calistir("TAKIP",  "bist_temel")   # Sadece fiyat + KAP takip, TARA değil
     _sim_ozet_gonder("SABAH")
     log.info("Sabah taraması tamamlandı")
 
@@ -111,7 +110,6 @@ def ogle():
     calistir("TARA",  "bist_trade")
     calistir("TARA",  "kripto")
     calistir("TARA",  "altin_gumus")
-    calistir("TAKIP", "bist_temel")
     _sim_ozet_gonder("ÖĞLE")
     log.info("Öğle taraması tamamlandı")
 
@@ -123,7 +121,6 @@ def aksam():
     calistir("RAPOR", "bist_trade")
     calistir("RAPOR", "kripto")
     calistir("RAPOR", "altin_gumus")
-    calistir("TAKIP", "bist_temel")
     log.info("Akşam raporu tamamlandı")
 
 def _sim_ozet_gonder(etiket: str):
@@ -216,9 +213,7 @@ if __name__ == "__main__":
         elif komut == "AKSAM1": aksam1()
         elif komut == "AKSAM2": aksam2()
         elif komut == "KRIPTO": kripto_tara()
-        elif komut == "TEMEL_TARA":
-            # 6 ayda bir manuel çalıştır
-            calistir("TARA", "bist_temel")
+
         elif komut == "HEPSI":
             sabah(); ogle(); aksam1(); aksam2()
     else:
